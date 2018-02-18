@@ -1,3 +1,12 @@
-name = Button visually impair
-description = Description of what this module does
+name = bvi
+description = Плагин для слабовидящих
 core = 7.x
+
+
+stylesheets[all][] = vendor/button-visually-impaired/css/bvi.min.css
+
+; scripts[] = vendor/button-visually-impaired/js/responsivevoice.min.js
+; scripts[] = vendor/button-visually-impaired/js/bvi.min.js
+; scripts[] = vendor/button-visually-impaired/js/js.cookie.js
+
+dependencies[] = jquery_update:jquery_update

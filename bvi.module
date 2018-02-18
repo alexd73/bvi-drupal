@@ -1,2 +1,43 @@
 <?php
 
+/**
+ * Implements hook_block_info().
+ */
+function bvi_block_info() {
+  $blocks['bvi'] = array(
+    'info' => t('Button visually impaired'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Prepares the contents of the block.
+ */
+function bvi_block_view($delta = '') {
+  switch ($delta) {
+    case 'bvi':
+      $block['subject'] = null;
+      // TODO Add translating
+      $block['content'] = l(t('Версия для слабовидящих'), '',
+        array(
+          'fragment' => ' ',
+          'external' => TRUE,
+          'attributes' => array('class' => 'bvi-panel-open'))
+      );
+  }
+  return $block;
+}
+
+function bvi_preprocess_page(&$variables) {
+  $bvi_sources_path = '/vendor/button-visually-impaired';
+  // TODO Add skiped pages
+  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/responsivevoice.min.js');
+  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/bvi-init-panel.js');
+  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/bvi.min.js');
+  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/js.cookie.js');
+  // $variables['scripts'] = drupal_get_js(); // необходимо in D7?
+}
+
