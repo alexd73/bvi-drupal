@@ -32,12 +32,11 @@ function bvi_block_view($delta = '') {
 }
 
 function bvi_preprocess_page(&$variables) {
-  $bvi_sources_path = '/vendor/button-visually-impaired';
-  // TODO Add skiped pages
-  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/responsivevoice.min.js');
-  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/bvi-init-panel.js');
-  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/bvi.min.js');
-  drupal_add_js(drupal_get_path('module', 'bvi') . $bvi_sources_path . '/js/js.cookie.js');
-  // $variables['scripts'] = drupal_get_js(); // необходимо in D7?
+  $bvi_sources_path = drupal_get_path('module', 'bvi') . '/vendor/button-visually-impaired';
+  // TODO Добавить исключения страниц (страница с настройками)
+  drupal_add_js($bvi_sources_path . '/js/responsivevoice.min.js');
+  drupal_add_js($bvi_sources_path . '/js/bvi-init-panel.js');
+  drupal_add_js($bvi_sources_path . '/js/bvi.min.js');
+  drupal_add_js($bvi_sources_path . '/js/js.cookie.js');
 }
 
